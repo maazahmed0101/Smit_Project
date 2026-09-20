@@ -1,0 +1,6 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  line-height: 0;
+}

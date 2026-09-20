@@ -1,0 +1,33 @@
+.mobilenav {
+  display: none;
+}
+@media (max-width: 767px) {
+  .mobilenav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    height: var(--bottom-nav-h);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    background: #000;
+    border-top: 1px solid var(--border);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  .mobilenav__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    margin: 0 4px;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+  }
+  .mobilenav__item.is-active {
+    background: var(--primary);
+    color: #000;
+  }
+}

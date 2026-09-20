@@ -1,0 +1,94 @@
+.sidebar {
+  position: sticky;
+  top: var(--nav-h);
+  flex: none;
+  align-self: flex-start;
+  height: calc(100vh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  width: var(--sidebar-w);
+  padding: 32px 16px;
+  background: #000;
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+}
+.sidebar__group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: #000;
+  border: 1px solid #fff;
+  color: #fff;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.sidebar__item:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+.sidebar__item.is-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #000;
+}
+.sidebar__item svg {
+  flex: none;
+}
+
+/* compact (icon-only) — watch page, and full sidebar on tablets */
+.sidebar--compact {
+  width: var(--sidebar-compact-w);
+  padding: 16px;
+  gap: 16px;
+}
+.sidebar--compact .sidebar__group {
+  gap: 12px;
+}
+.sidebar--compact .sidebar__item {
+  width: 48px;
+  height: 48px;
+  min-height: 0;
+  padding: 0;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+}
+.sidebar--compact .sidebar__label {
+  display: none;
+}
+
+@media (max-width: 1099px) {
+  .sidebar--full {
+    width: var(--sidebar-compact-w);
+    padding: 16px;
+    gap: 16px;
+  }
+  .sidebar--full .sidebar__group {
+    gap: 12px;
+  }
+  .sidebar--full .sidebar__item {
+    width: 48px;
+    height: 48px;
+    min-height: 0;
+    padding: 0;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+  }
+  .sidebar--full .sidebar__label {
+    display: none;
+  }
+}
+
+/* phones use the bottom bar instead */
+@media (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+}

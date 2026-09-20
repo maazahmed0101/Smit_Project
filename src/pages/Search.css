@@ -1,0 +1,15 @@
+.search__count {
+  padding: 0 0 16px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-muted);
+}
+.search__count b {
+  color: #fff;
+  font-weight: 600;
+}
+.search__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

@@ -1,0 +1,23 @@
+.app {
+  min-height: 100vh;
+  background: #000;
+}
+.app__body {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.app__main {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: calc(100vh - var(--nav-h));
+  outline: none;
+}
+@media (max-width: 767px) {
+  .app__main {
+    min-height: calc(100vh - 64px);
+    padding-bottom: var(--bottom-nav-h);
+  }
+}
