@@ -27,7 +27,8 @@ export default function VideoPlayer({ video }) {
   }, [video.id, attempt]);
 
   useEffect(() => {
-    const onFs = () => setFullscreen(document.fullscreenElement === wrapRef.current);
+    const onFs = () =>
+      setFullscreen(document.fullscreenElement === wrapRef.current);
     document.addEventListener("fullscreenchange", onFs);
     return () => document.removeEventListener("fullscreenchange", onFs);
   }, []);
@@ -94,7 +95,11 @@ export default function VideoPlayer({ video }) {
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div className={`player ${playing ? "is-playing" : ""} ${fullscreen ? "is-fullscreen" : ""}`} ref={wrapRef} onKeyDown={onKeyDown}>
+    <div
+      className={`player ${playing ? "is-playing" : ""} ${fullscreen ? "is-fullscreen" : ""}`}
+      ref={wrapRef}
+      onKeyDown={onKeyDown}
+    >
       <video
         ref={videoRef}
         className="player__video"
@@ -114,8 +119,13 @@ export default function VideoPlayer({ video }) {
         aria-label={video.title}
       >
         {sources.webm && <source src={sources.webm} type="video/webm" />}
-        {sources.mp4 && <source src={sources.mp4} type="video/mp4" onError={() => setFailed(true)} />}
-        {!sources.mp4 && sources.webm && <source src={sources.webm} type="video/webm" onError={() => setFailed(true)} />}
+        {sources.mp4 && (
+          <source
+            src={sources.mp4}
+            type="video/mp4"
+            onError={() => setFailed(true)}
+          />
+        )}
       </video>
 
       {failed && (
@@ -123,23 +133,39 @@ export default function VideoPlayer({ video }) {
           <Icon name="play-circle" size={40} />
           <p>This video can&rsquo;t be played right now.</p>
           <p className="player__error-sub">
-            The video file was not found or this browser can&rsquo;t play its format. Make sure the app is opened through
+            The video file was not found or this browser can&rsquo;t play its
+            format. Make sure the app is opened through
             <code> npm run dev</code> (not by double-clicking index.html).
           </p>
-          <button type="button" className="player__retry" onClick={() => setAttempt((a) => a + 1)}>
+          <button
+            type="button"
+            className="player__retry"
+            onClick={() => setAttempt((a) => a + 1)}
+          >
             Try again
           </button>
         </div>
       )}
 
       {!failed && !playing && (
-        <button type="button" className="player__big" aria-label={`Play ${video.title}`} onClick={toggle}>
+        <button
+          type="button"
+          className="player__big"
+          aria-label={`Play ${video.title}`}
+          onClick={toggle}
+        >
           <Icon name="play" size={36} filled />
         </button>
       )}
 
       <div className="player__controls">
-        <button type="button" className="player__btn" aria-label={playing ? "Pause" : "Play"} onClick={toggle} disabled={failed}>
+        <button
+          type="button"
+          className="player__btn"
+          aria-label={playing ? "Pause" : "Play"}
+          onClick={toggle}
+          disabled={failed}
+        >
           <Icon name={playing ? "pause" : "play"} size={18} filled />
         </button>
         <input
@@ -158,8 +184,17 @@ export default function VideoPlayer({ video }) {
         <span className="player__time" aria-hidden="true">
           {formatClock(time)} / {formatClock(duration)}
         </span>
-        <button type="button" className="player__btn" aria-label={muted ? "Unmute" : "Mute"} onClick={toggleMute} disabled={failed}>
-          <Icon name={muted || volume === 0 ? "volume-x" : "volume"} size={18} />
+        <button
+          type="button"
+          className="player__btn"
+          aria-label={muted ? "Unmute" : "Mute"}
+          onClick={toggleMute}
+          disabled={failed}
+        >
+          <Icon
+            name={muted || volume === 0 ? "volume-x" : "volume"}
+            size={18}
+          />
         </button>
         <input
           className="player__range player__volume"
@@ -173,7 +208,12 @@ export default function VideoPlayer({ video }) {
           style={{ "--pct": `${(muted ? 0 : volume) * 100}%` }}
           disabled={failed}
         />
-        <button type="button" className="player__btn" aria-label={fullscreen ? "Exit full screen" : "Full screen"} onClick={toggleFullscreen}>
+        <button
+          type="button"
+          className="player__btn"
+          aria-label={fullscreen ? "Exit full screen" : "Full screen"}
+          onClick={toggleFullscreen}
+        >
           <Icon name="maximize" size={18} />
         </button>
       </div>
